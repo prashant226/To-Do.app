@@ -1,0 +1,74 @@
+{
+	"fonts": [
+		{
+			"id": "el-vsc-01",
+			"src": [
+				{
+					"path": "./el-vsc-01.woff",
+					"format": "woff"
+				}
+			],
+			"weight": "normal",
+			"style": "normal"
+		}
+	],
+	"iconDefinitions": {
+		"files": {
+			"fontCharacter": "\\f754"
+		},
+		"search": {
+			"fontCharacter": "\\F422"
+		},
+		"debug-alt": {
+			"fontCharacter": "\\f46f"
+		},
+		"source-control": {
+			"fontCharacter": "\\FB2B"
+		},
+		"settings-gear": {
+			"fontCharacter": "\\e70c"
+		},
+		"tree-item-expanded": {
+			"fontCharacter": "\\f107"
+		},
+		"account": {
+			"fontCharacter": "\\f2be"
+		},
+		"folding-expanded": {
+			"fontCharacter": "\\f147"
+		},
+		"folding-collapsed": {
+			"fontCharacter": "\\f196"
+		},
+		"extensions": {
+			"fontCharacter": "\\f576"
+		},
+		"cloud-upload": {
+			"fontCharacter": "\\E33C"
+		},
+		"git-branch": {
+			"fontCharacter": "\\f9c0"
+		},
+		"error": {
+			"fontCharacter": "\\f686",
+		},
+		"warning": {
+			"fontCharacter": "\\F67d"
+		},
+		"info": {
+			"fontCharacter": "\\F684"
+		},
+		"check": {
+			"fontCharacter": "\\F62C"
+		},
+		"bell": {
+			"fontCharacter": "\\F59B"
+		},
+		"bell-dot": {
+			"fontCharacter": "\\F59E"
+		},
+		"exclude": {
+			"fontCharacter": "\\FB97"
+		}
+	}
+}
