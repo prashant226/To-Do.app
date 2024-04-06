@@ -1,0 +1,32 @@
+# Codiumate Chat Help Guide
+
+Welcome to Codiumate Pre-PR Chat
+
+## How to Use Commands
+
+Commands are special instructions you can send in the chat to perform certain actions or to get specific responses from Codiumate. To enter a command, simply type a forward slash `/` followed by the command name.
+
+### Available Commands
+
+Here are the commands you can use:
+
+#### `/describe`
+
+- **Label**: Describe
+- **Description**: Generating PR description - title, type, summary, code walkthrough and labels.
+
+Example:
+
+```
+/describe
+or
+/describe make it funny
+```
+
+This will generate a funny PR description
+
+---
+
+And that's it! These are the commands currently available. We hope you find this guide useful. Happy coding!
+
+---

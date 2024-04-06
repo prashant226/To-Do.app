@@ -1,0 +1,1 @@
+{"digest":"56dbcbe1fe556cd8e0de02cfb4a28257187c8524","css":".linter-ui-plus .panel-section table {\n  width: 100%;\n}\n","imports":[{"path":"static\\variables\\ui-variables.less","digest":"22956e6f6db30ab08c9f8dbc5a1bba7149ff2678"},{"path":"static\\variables\\syntax-variables.less","digest":"161404ff92113205d84a38441681ded1e4527102"}],"version":1}

@@ -1,0 +1,1 @@
+{"digest":"5803efee50d74baccd618f01fd7fe3e4fc73f299","css":".linter-ui-plus .panel-toolbar {\n  flex-shrink: 0;\n}\n","imports":[{"path":"static\\variables\\ui-variables.less","digest":"22956e6f6db30ab08c9f8dbc5a1bba7149ff2678"},{"path":"static\\variables\\syntax-variables.less","digest":"161404ff92113205d84a38441681ded1e4527102"}],"version":1}

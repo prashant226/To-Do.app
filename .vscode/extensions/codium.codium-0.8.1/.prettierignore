@@ -1,0 +1,11 @@
+out
+dist
+node_modules
+.vscode-test/
+.vscode/settings.json
+*.vsix
+.DS_Store
+media/compiled/*
+media/sentry/*
+# Test file, structure is intentionally messed up so we can test the "test suite structure analysis" capability with it.
+*testStructureExample.test.ts

@@ -1,0 +1,124 @@
+{
+	"name": "lslint",
+	"displayName": "LSLint For VSCode",
+	"description": "Adds LSLint (Second Life LSL Linting) support to VSCode",
+	"version": "1.0.3",
+	"publisher": "FixedBit",
+	"author": "Jason Hawks",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FixedBit/lslint-for-vscode.git"
+	},
+	"bugs": {
+		"url": "https://github.com/FixedBit/lslint-for-vscode/issues"
+	},
+	"icon": "sl.png",
+	"galleryBanner": {
+		"color": "#050523",
+		"theme": "dark"
+	},
+	"license": "SEE LICENSE IN LICENSE.md",
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"categories": [
+		"Linters"
+	],
+	"activationEvents": [
+		"onLanguage:lsl",
+		"onCommand:lslint.lint"
+	],
+	"main": "./out/lslint-for-vscode.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "LSLint for VSCode",
+			"properties": {
+				"lslint.realtimeWait": {
+					"type": "integer",
+					"default": 1000,
+					"description": "Milliseconds to wait between each realtime linting (minimum 1000 for 1 second)"
+				},
+				"lslint.realtimeLinting": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable linting in real time"
+				},
+				"lslint.lintOnSave": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable linting when you save the document"
+				},
+				"lslint.popupErrors": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show LSLint message popups after linting"
+				},
+				"lslint.ignoreDirectives": {
+					"type": "boolean",
+					"default": false,
+					"description": "Ignore Firestorm preprocessor directives"
+				},
+				"lslint.enableSwitchStatements": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable Firestorm preprocessor Switch Statements"
+				},
+				"lslint.enableLazyLists": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable Firestorm preprocessor Lazy List Syntax"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "lslint.lint",
+				"title": "LSLint: Lint this script"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "lslint.lint",
+					"when": "editorLangId == lsl"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"test-compile": "tsc -p ./"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.58.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"command-exists": "^1.2.9",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"open": "^8.2.1",
+		"supports-color": "^7.2.0",
+		"ts-loader": "^9.2.4",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2",
+		"webpack": "^5.47.0",
+		"webpack-cli": "^4.7.2"
+	},
+	"__metadata": {
+		"id": "a00326b8-c127-4cab-aa83-61dda31770b5",
+		"publisherId": "a9e90162-4f05-4999-8d08-60139451fd1a",
+		"publisherDisplayName": "FixedBit Innovations",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1681320198389,
+		"preRelease": false
+	}
+}

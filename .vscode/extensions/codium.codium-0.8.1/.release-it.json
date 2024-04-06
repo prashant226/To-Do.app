@@ -1,0 +1,15 @@
+{
+  "git": {
+    "requireBranch": "main",
+    "commitMessage": "bump v${version}",
+    "pushRepo": "Codium-ai/codium-ai-vscode",
+    "tagAnnotation": "v${version}"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}"
+  },
+  "npm": {
+    "publish": false
+  }
+}

@@ -1,0 +1,544 @@
+{
+	"name": "codium",
+	"publisher": "Codium",
+	"displayName": "Codiumate - Code, test and review with confidence - by CodiumAI",
+	"icon": "media/logo/icon.png",
+	"description": "Your code integrity AI mate - analyzes your code and generates meaningful tests to catch bugs before you ship (powered by GPT-3.5&4 & TestGPT-1)",
+	"galleryBanner": {
+		"color": "#684BFE",
+		"theme": "dark"
+	},
+	"version": "0.8.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Codium-ai/codiumai-vscode-release"
+	},
+	"homepage": "https://www.codium.ai/",
+	"keywords": [
+		"copilot",
+		"codium",
+		"openai",
+		"chatgpt",
+		"gpt-3",
+		"python",
+		"code-integrity",
+		"unit-testing",
+		"code-coverage",
+		"generative-ai"
+	],
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.72.0"
+	},
+	"categories": [
+		"Testing",
+		"Machine Learning",
+		"Data Science",
+		"Snippets",
+		"Programming Languages",
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:python",
+		"onStartupFinished",
+		"onUri",
+		"onView:open-sidebar"
+	],
+	"extensionDependencies": [
+		"vscode.git"
+	],
+	"author": {
+		"name": "Codium"
+	},
+	"main": "./dist/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "codium-sidebar-view-container",
+					"title": "Codiumate",
+					"icon": "media/logo/codium-logo-white.svg"
+				}
+			]
+		},
+		"views": {
+			"codium-sidebar-view-container": [
+				{
+					"type": "webview",
+					"id": "chat-view",
+					"name": "Chat",
+					"size": 2,
+					"visibility": "visible"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "codium.enable",
+				"shortTitle": "Enable Codiumate",
+				"title": "Enable Codiumate"
+			},
+			{
+				"command": "codium.auth.accountSignIn",
+				"title": "Sign in to Codiumate"
+			},
+			{
+				"command": "codium.disable",
+				"title": "Disable Codiumate",
+				"shortTitle": "Disable Codiumate"
+			},
+			{
+				"command": "codium.getStarted",
+				"title": "Codiumate - Get Started",
+				"category": "Codiumate",
+				"icon": "$(question)"
+			},
+			{
+				"command": "codium.generate_tests_from_selection",
+				"title": "Generate Tests",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.generate_tests_from_shortcut",
+				"title": "Generate Tests",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.right_click_explain_code",
+				"title": "Explain this code",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.right_click_write_docstring",
+				"title": "Write Docstring for this code",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.right_click_enhance_code",
+				"title": "Enhance this code",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.right_click_code_suggestion",
+				"title": "Get code suggestions",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.right_click_add_snippet_to_context",
+				"when": "editorHasSelection",
+				"title": "Add to Codiumate as context",
+				"category": "Codiumate",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.clearCaches",
+				"title": "Codiumate - Clear Caches",
+				"enablement": "codium.user.isLoggedIn"
+			},
+			{
+				"command": "codium.chat.clear",
+				"title": "Clear Chat",
+				"category": "CodiumAI",
+				"icon": "$(clear-all)"
+			},
+			{
+				"command": "codium.chat.reload",
+				"title": "Reset Chat",
+				"category": "CodiumAI",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "codium.chat.menu.documentation",
+				"title": "Documentation"
+			},
+			{
+				"command": "codium.chat.menu.discord",
+				"title": "Help on Discord"
+			},
+			{
+				"command": "codium.chat.menu.contact",
+				"title": "Contact Us"
+			},
+			{
+				"command": "codium.chat.menu.portal",
+				"title": "User Portal"
+			},
+			{
+				"command": "codium.chat.menu.logout",
+				"title": "Logout"
+			},
+			{
+				"command": "codium.chat.commit",
+				"title": "Auto Commit Message",
+				"category": "CodiumAI"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "codium.generate_tests_from_shortcut",
+				"mac": "cmd+ctrl+c",
+				"key": "alt+shift+c",
+				"windows": "ctrl+win+z",
+				"when": "true"
+			},
+			{
+				"command": "codium.right_click_add_snippet_to_context",
+				"key": "ctrl+shift+e",
+				"mac": "cmd+shift+e",
+				"when": "editorTextFocus && editorHasSelection"
+			}
+		],
+		"scm": {
+			"title": "Auto Commit Message",
+			"command": "codium.chat.commit",
+			"when": "scmProvider == git"
+		},
+		"configuration": [
+			{
+				"title": "Codiumate",
+				"properties": {
+					"codium.enable": {
+						"order": 1,
+						"type": "boolean",
+						"default": true,
+						"description": "Enable Codiumate plugin"
+					},
+					"codium.editorButton": {
+						"order": 2,
+						"type": "boolean",
+						"default": true,
+						"description": "Show Codiumate buttons above functions and classes in the code editors (**Note**: You can still run codium from the sidebar)"
+					},
+					"codium.javascriptTestsConfig-1RunWorkingDirectory": {
+						"type": "string",
+						"default": "",
+						"description": "When running Javascript / Typescript tests, use this directory as the working directory.\n- This is typically the ROOT DIRECTORY OF YOU PROJECT, where your package.json lives.\n- Use ABSOLUTE PATH.\n\nPLEASE CONFIGURE BOTH THIS AND RUN-COMMAND."
+					},
+					"codium.javascriptTestsConfig-2RunCommand": {
+						"type": "string",
+						"default": "",
+						"description": "Use this command for running a single Javascript / Typescript tests file.\n- The placeholder TEST_FILEPATH will be replaced with the actual test file path.\n- You almost always want to start with 'npx' (e.g. 'npx jest', not 'npm jest' or 'yarn test')\n- Note that the test command must be able to run test files that are located in the same directory as the file under test.\n\nExamples:\n - npx jest --runTestsByPath TEST_FILEPATH\n - npx ts-mocha TEST_FILEPATH --require ./test/mocha/setup.ts\n\nPLEASE CONFIGURE BOTH THIS AND WORKING-DIRECTORY."
+					},
+					"codium.javascriptTestsConfig-3RunDefaultImports": {
+						"type": "string",
+						"default": "",
+						"description": "When running javascript test files, always add these imports at the beginning of the file. Separate with '\\n'."
+					}
+				}
+			},
+			{
+				"title": "Code Auto-complete",
+				"properties": {
+					"codium.codeCompletion.enable": {
+						"type": "boolean",
+						"order": 1,
+						"default": false,
+						"description": "Enable Codiumate code auto-completion capabilities (for CodiumAI subscribed members, including during trial)."
+					},
+					"codium.codeCompletion.userInstructions": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "Enter your own special code auto-complete instructions here. This will be used by the AI model system instructions. This field supports multi-line input.",
+						"scope": "window",
+						"editPresentation": "multilineText"
+					}
+				}
+			},
+			{
+				"title": "Codiumate Agent",
+				"properties": {
+					"codium.agent.onSave.issues": {
+						"type": "boolean",
+						"order": 1,
+						"default": true,
+						"description": "On file save, auto-run `/issues` to detect issues for every small-size changeset"
+					},
+					"codium.agent.onSave.improve": {
+						"type": "boolean",
+						"order": 1,
+						"default": true,
+						"description": "On file save, auto-run `/improve` to suggest improvements for every mid-size changeset"
+					}
+				}
+			}
+		],
+		"submenus": [
+			{
+				"id": "codium.submenu",
+				"label": "Codiumate"
+			},
+			{
+				"id": "codium.chat.menu",
+				"label": "Codiumate",
+				"icon": "$(ellipsis)"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"submenu": "codium.submenu",
+					"group": "codium@1"
+				},
+				{
+					"command": "codium.right_click_add_snippet_to_context",
+					"group": "codium@2"
+				}
+			],
+			"codium.submenu": [
+				{
+					"command": "codium.generate_tests_from_selection",
+					"group": "a@0"
+				},
+				{
+					"command": "codium.right_click_explain_code",
+					"group": "b@1"
+				},
+				{
+					"command": "codium.right_click_write_docstring",
+					"group": "b@2"
+				},
+				{
+					"command": "codium.right_click_enhance_code",
+					"group": "b@3"
+				},
+				{
+					"command": "codium.right_click_code_suggestion",
+					"group": "b@4"
+				}
+			],
+			"codium.chat.menu": [
+				{
+					"command": "codium.chat.menu.documentation",
+					"group": "a@0"
+				},
+				{
+					"command": "codium.chat.menu.discord",
+					"group": "a@1"
+				},
+				{
+					"command": "codium.chat.menu.contact",
+					"group": "a@2"
+				},
+				{
+					"command": "codium.chat.menu.portal",
+					"group": "a@3"
+				},
+				{
+					"command": "codium.chat.menu.logout",
+					"group": "a@4"
+				}
+			],
+			"view/title": [
+				{
+					"command": "codium.auth.accountSignIn",
+					"group": "navigation@0",
+					"when": "!codium.user.isLoggedIn && view == chat-view"
+				},
+				{
+					"command": "codium.chat.reload",
+					"group": "navigation@0",
+					"when": "view == chat-view && codium.user.codiumate"
+				},
+				{
+					"command": "codium.chat.clear",
+					"group": "navigation@1",
+					"when": "view == chat-view"
+				},
+				{
+					"submenu": "codium.chat.menu",
+					"group": "navigation@2",
+					"when": "view == chat-view"
+				}
+			],
+			"scm/title": [
+				{
+					"command": "codium.chat.commit",
+					"group": "navigation@0",
+					"when": "scmProvider == git && codium.user.IsPaying"
+				}
+			]
+		},
+		"walkthroughs": [
+			{
+				"id": "codium",
+				"title": "Codiumate",
+				"description": "Meaningful tests for busy devs",
+				"steps": [
+					{
+						"id": "sign-in",
+						"title": "Sign in",
+						"description": "Sign in to get started with Codiumate.\n[Sign in](command:codium.auth.accountSignIn)",
+						"media": {
+							"markdown": "walkthrough/sign-in.md"
+						},
+						"when": "!codium.user.isLoggedIn"
+					},
+					{
+						"id": "generate-tests",
+						"title": "Generate Tests",
+						"description": "Codiumate analyzes your code and generates meaningful tests to catch bugs before you ship.",
+						"media": {
+							"markdown": "walkthrough/generate-tests.md"
+						}
+					},
+					{
+						"id": "refine-tests",
+						"title": "Refine Suggested Tests",
+						"description": "With Codiumate, you can easily and quickly create comprehensive test suites that help you ensure the reliability and correctness of your software.",
+						"media": {
+							"markdown": "walkthrough/refine-tests.md"
+						}
+					},
+					{
+						"id": "behaviors",
+						"title": "Behavior Coverage",
+						"description": "Explore your code behaviors and generate tests for each behavior",
+						"media": {
+							"markdown": "walkthrough/behaviors.md"
+						}
+					},
+					{
+						"id": "quick-actions",
+						"title": "Quick Actions",
+						"description": "Generate tests, get code suggestions and more using Quick Actions panel",
+						"media": {
+							"markdown": "walkthrough/quick_actions.md"
+						}
+					},
+					{
+						"id": "save-tests",
+						"title": "Save Tests",
+						"description": "Once you are done, you can save the generated tests with a simple click!",
+						"media": {
+							"markdown": "walkthrough/save-tests.md"
+						}
+					},
+					{
+						"id": "code-suggestions",
+						"title": "Code Suggestions",
+						"description": "Codiumate helps you to improve your code",
+						"media": {
+							"markdown": "walkthrough/code-suggestions.md"
+						}
+					},
+					{
+						"id": "join-community",
+						"title": "Join the community",
+						"description": "Whether you need help, have suggestions, or want to share the excitement, join us on Discord!",
+						"media": {
+							"markdown": "walkthrough/join-community.md"
+						}
+					}
+				]
+			}
+		]
+	},
+	"scripts": {
+		"dead-code": "knip",
+		"build:tests_panel": "cd src/webviews/generate_tests_panel && npm install && npm run build && cd ../../..",
+		"build:chat": "cd src/webviews/chat_panel && npm install && npm run build && cd ../../..",
+		"build:all": "npm run build:tests_panel && npm run build:chat",
+		"prepare": "husky install",
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"clean": "rimraf ./out",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test:contract": "CODIUM_INTEGRATION_TEST_RUN=TRUE node ./out/test/run_test.js",
+		"test:unit": "mocha --parallel --require ts-node/register '\"src/test/unit_tests/**/*.test.ts\"'",
+		"test": "npm run test:unit && npm run test:contract",
+		"vscode:package": "vsce package",
+		"vscode:package:e2e": "mkdir -p src/test/suite/test_data/sample_workspace/dist && webpack && vsce package --out src/test/suite/test_data/sample_workspace/dist/codium.e2e.vsix",
+		"vscode:publish": "vsce publish",
+		"ovsx:publish": "ovsx publish",
+		"release": "release-it --dry-run"
+	},
+	"devDependencies": {
+		"@types/chai-subset": "^1.3.3",
+		"@types/glob": "^7.2.0",
+		"@types/js-levenshtein": "^1.1.3",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "16.x",
+		"@types/object-hash": "^3.0.2",
+		"@types/uuid": "^9.0.0",
+		"@types/vscode": "^1.70.0",
+		"@typescript-eslint/eslint-plugin": "^5.31.0",
+		"@typescript-eslint/parser": "^5.31.0",
+		"@vitejs/plugin-react-swc": "^3.3.2",
+		"@vscode/test-electron": "^2.1.5",
+		"@vscode/vsce": "^2.18.0",
+		"chai-subset": "^1.6.0",
+		"eslint": "^8.20.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"glob": "^8.0.3",
+		"husky": "^8.0.3",
+		"knip": "^2.10.3",
+		"lint-staged": "^13.2.1",
+		"mocha": "^10.1.0",
+		"ovsx": "^0.8.0",
+		"prettier": "^2.8.7",
+		"release-it": "^16.1.5",
+		"rimraf": "^5.0.0",
+		"socket.io": "^4.6.1",
+		"tiny-invariant": "^1.3.1",
+		"ts-byob": "^1.0.3",
+		"ts-loader": "^9.3.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.7.4",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0"
+	},
+	"dependencies": {
+		"@sentry/node": "^7.77.0",
+		"@types/chai-string": "^1.4.4",
+		"@types/lodash": "^4.14.199",
+		"@types/react": "^18.2.31",
+		"@types/react-dom": "^18.2.14",
+		"@types/sinon": "^10.0.16",
+		"@vscode/codicons": "^0.0.33",
+		"@vscode/python-extension": "^1.0.4",
+		"@vscode/sqlite3": "^5.1.6-vscode",
+		"async-mutex": "^0.4.0",
+		"axios": "^1.6.0",
+		"axios-better-stacktrace": "^2.1.3",
+		"chai": "^4.3.7",
+		"chai-string": "^1.5.0",
+		"detect-indent": "6.1.0",
+		"firebase": "^10.5.2",
+		"js-levenshtein": "^1.1.6",
+		"lodash": "^4.17.21",
+		"mixpanel": "^0.17.0",
+		"object-hash": "^3.0.0",
+		"parse-diff": "0.11.1",
+		"python-ast": "^0.1.0",
+		"query-string": "^7.1.3",
+		"sinon": "^15.2.0",
+		"toml": "^3.0.0",
+		"ts-pattern": "^4.2.2",
+		"uuid": "^9.0.0",
+		"wink-nlp-utils": "^2.1.0",
+		"zod": "^3.22.2"
+	},
+	"__metadata": {
+		"id": "9236e634-e663-41bc-b320-03ab778e7110",
+		"publisherId": "56dacd20-3841-46d0-963a-7f554bff5edd",
+		"publisherDisplayName": "CodiumAI - Generate Meaningful Tests",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1712252328119,
+		"pinned": false,
+		"preRelease": false
+	}
+}
